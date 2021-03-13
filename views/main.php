@@ -6,7 +6,7 @@ $title = "main";
 global $router;
 
 App::startSession();
-dump($_SESSION);
+
 
 if (isset($_SESSION['flash']) ) {
     $errors = $_SESSION['flash'];
