@@ -37,6 +37,28 @@ class Auth
         return $user ?: null;
         
     }
+    public function isLogged(array $session): bool
+    {
+        App::startSession();
+        if (isset($session['authid']) && $session['authid']!== null ) {
+            return true;
+        }
+        return false;
+    }
+    public function getUser(array $session): ?User
+    {
+        if (!$this->isLogged($session)) {
+            return null;
+        }
+        $query = $this->PDO->prepare("SELECT * FROM Users WHERE id = :id");
+        $query->execute([
+            "id"=>$session['authid']
+            ]);
+        $user = $query->fetchObject (User::class);
+        
+
+        return $user;
+    }
 }
 
 

@@ -9,6 +9,9 @@ class User {
 
     public $password; 
 
-    
     public $email;
+
+    public $confirmation_token;
+
+    public $confirmed_at;
 }

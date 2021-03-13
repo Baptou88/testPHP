@@ -126,6 +126,20 @@ class QueryBuilder {
         
         return $record; 
     }
+    public function fetchFirst(): ?array
+    {
+        $query = $this->pdo->prepare($this->toSQL());
+        $query->execute($this->params);
+        dump($query);
+        
+        $record = $query->fetchAll();
+        
+        if ($record != []) {
+            return $record[0];
+        }
+        return null;
+         
+    }
 
     public function count():int
     {

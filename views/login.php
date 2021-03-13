@@ -26,9 +26,12 @@ if (isset($_GET['Pass']) && isset($_GET['Email'])) {
         Auth success
         </div>
     ";
-        session_start();
-        $_SESSION['auth'] = $auth;
+        App::startSession();
+        
+        $_SESSION['authid'] = $auth->id;
         dump($_SESSION);
+        $_SESSION['flash'] = ['success' => 'auth ok'];
+        header("Location: /account",301);
     }
 } 
 ?>
@@ -79,11 +82,10 @@ body {
 <!-- <div class="container text-center my-4 w-70"> -->
 <main class="form-signin">
 <form>
-<div class="text-center">
+  <div class="text-center">
     <img class="mb-4 " src="https://via.placeholder.com/72x57" alt="" width="72" height="57">
-</div>
-
-  <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+  </div>
   <label for="inputEmail" class="visually-hidden">Email address</label>
   <input type="email" id="inputEmail" class="form-control" name="Email" placeholder="Email address" required autofocus>
   <label for="inputPassword"  class="visually-hidden">Password</label>

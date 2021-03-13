@@ -1,7 +1,32 @@
 <?php
+
+use App\App;
+
 $title = "main";
 global $router;
 
+App::startSession();
+dump($_SESSION);
+
+if (isset($_SESSION['flash']) ) {
+    $errors = $_SESSION['flash'];
+    ?>
+    <div class="container">
+    <?php
+    foreach ($errors as $status =>$desc) {
+        ?>
+            <div class="alert alert-<?=$status?>">
+                <p><?=$desc?></p>
+
+            </div>
+
+        <?php
+    }
+    ?>
+    </div>
+    <?php
+    $_SESSION['flash'] = null;
+}
 ?>
 
 <div class="container ">

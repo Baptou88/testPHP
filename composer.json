@@ -14,9 +14,15 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "require": {
         "altorouter/altorouter": "^2.0"
+    },
+    "config": {
+        "disable-tls": true
     }
 }

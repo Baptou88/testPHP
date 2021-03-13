@@ -1,7 +1,10 @@
 <?php
-    global $router;
 
-    ?><!DOCTYPE html>
+use App\App;
+
+global $router;
+  
+?><!DOCTYPE html>
 <html class ="h-100 no-touch" lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -27,9 +30,22 @@
         <li class="nav-item">
           <a class="nav-link" href=" <?=$router->generate('list')?>">Product</a>
         </li>
-        <li class="nav-item">
+        <?php
+          if (isset($_SESSION['authid']) && $_SESSION['authid'] !== null) {
+            ?>
+            <li class="nav-item">
+          <a class="nav-link" href=" <?=$router->generate('logout')?>">Hello <?=App::getAuth()->getUser($_SESSION)->username?> | logout</a>
+        </li>
+        <?php
+          }else {
+            ?>
+              <li class="nav-item">
           <a class="nav-link" href=" <?=$router->generate('login')?>">login</a>
         </li>
+            <?php
+          }
+        ?>
+        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
