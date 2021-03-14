@@ -45,11 +45,13 @@ class Table {
         $pages = ceil($count / $this->limit);
         if ($pages > 1 && $page > 1)
         {
-            $retour .= "<a href=?p=". ($page-1) . ">page-1</a>";
+            // $retour .= "<a href=?p=". ($page-1) . ">page-1</a>";
+            $retour .= "<a href=?" . URLHelper::withParam($this->get,"p",$page-1) . ">page-1</a>";
         }
         if ($pages > 1 && $page < $pages)
         {
-            $retour .= "<a href=?p=". ($page+1) . ">page+1</a>";
+            // $retour .= "<a href=?p=". ($page+1) . ">page+1</a>";
+            $retour .= "<a href=?" . URLHelper::withParam($this->get,"p",$page+1). ">page+1</a>";
         }
         return $retour;
     }

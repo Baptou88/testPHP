@@ -2,6 +2,8 @@
 
 use App\QueryBuilder;
 use App\Table;
+use App\URLHelper;
+
 global $router;
 require  "../vendor/autoload.php";
 
@@ -34,7 +36,7 @@ $tableau->columns([
 $tableau->format("id", function($value){
     global $router;
     // $router->generate('product' , ["slug" => $value,"id" => $value])
-    return "<a href=\"#".$router->generate('product' , ["slug" => $value,"id" => $value])."\">$value</a>";
+    return "<a class=\" \" href=\"".$router->generate('product' , ["slug" => $value,"id" => $value])."\">$value</a>";
    
 });
 

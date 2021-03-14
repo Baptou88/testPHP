@@ -31,9 +31,11 @@ class Router
     public function run()
     {
         $match = $this->aRouter->match();
+        
         ob_start();
         if ($match) {
             $view = $match['target'];
+            $params = $match['params'];
             require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
             
         } else {

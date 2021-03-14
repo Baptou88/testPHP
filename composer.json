@@ -7,7 +7,7 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
+        
         "symfony/var-dumper": "^5.2",
         "filp/whoops": "^2.9"
     },
@@ -20,9 +20,11 @@
         ]
     },
     "require": {
-        "altorouter/altorouter": "^2.0"
+        "altorouter/altorouter": "^2.0",
+        "phpunit/phpunit": "^9.5",
+        "guzzlehttp/guzzle": "6.3.3"
     },
     "config": {
-        "disable-tls": true
+        "disable-tls": false
     }
 }

@@ -18,13 +18,15 @@ $router = new Router(dirname(__DIR__) . "/views",);
 
 $router->get("/", "main","acceuil")
     ->get("/LProducts","products/LProducts","list")
-    ->get("/Product/[*:slug]-[i:id]","product","product")
+    ->get("/Product/[*:slug]-[i:id]","products/Product","product")
     ->get("/auth","auth","auth")
     ->get("/login","login","login")
     ->get("/logout","logout","logout")
     ->get("/account","account","account")
     ->get("/register", "register","register")
     ->get("/confirm","confirm","confirm")
+    ->get("/googlelogin","googlelogin","googlelogin")
+    ->get("/Goauth","Goauth","")
     ->run();
     
     

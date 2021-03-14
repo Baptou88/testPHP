@@ -3,6 +3,8 @@
 use App\App;
 use App\Auth;
 
+require "../config.php";
+$title = "login";
 
 if (isset($_GET['Pass']) && isset($_GET['Email'])) {
     echo "<div class=\"container\">
@@ -99,4 +101,13 @@ body {
   <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
 </form>
 </main>
+
+<div class="container">
+    <h1>Connexion via Google</h1>
+    <h3><?=GOOGLE_ID?></h3>
+    <a class="btn btn-outline-success" href="https://accounts.google.com/o/oauth2/v2/auth?scope=email&access_type=online&response_type=code&state=state_parameter_passthrough_value&redirect_uri=<?=urldecode("http://localhost:8001/Goauth")?>&client_id=<?= GOOGLE_ID ?>">Se connecter via Google</a>
+    <a class="btn btn-outline-danger" href="https://accounts.google.com/Logout?hl=fr&continue=localhost:3001&timeStmp=1615731000">Se deconnecter via Google</a>
+    <!-- https://accounts.google.com/Logout?hl=fr&continue=https://www.google.com/%3Fgws_rd%3Dssl&timeStmp=1615731000&secTok=.AG5fkS8C2cmrq2TScA3atKZYxoi-zIK_4w&ec=GAdAmgQ -->
+
+</div>
 <!-- </div> -->
