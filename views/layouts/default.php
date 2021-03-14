@@ -16,7 +16,7 @@ global $router;
     <title><?= $title ?? "Titre default "?></title>
 </head>
 <body class="flex-shrink-0 d-flex flex-column h-100">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
   <div class="container-fluid">
     <a class="navbar-brand" href=" <?= $router->generate('acceuil') ?> ">tests</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +29,9 @@ global $router;
         </li> -->
         <li class="nav-item">
           <a class="nav-link" href=" <?=$router->generate('list')?>">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href=" <?=$router->generate('cal')?>">Cal</a>
         </li>
         <?php
           if (isset($_SESSION['authid']) && $_SESSION['authid'] !== null) {

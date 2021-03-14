@@ -27,6 +27,7 @@ $router->get("/", "main","acceuil")
     ->get("/confirm","confirm","confirm")
     ->get("/googlelogin","googlelogin","googlelogin")
     ->get("/Goauth","Goauth","")
+    ->get("/cal","calendrier/calendrier","cal")
     ->run();
     
     
