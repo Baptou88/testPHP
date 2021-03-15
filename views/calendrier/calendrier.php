@@ -6,7 +6,7 @@ use App\Date\Month;
 
 App::startSession();
 global $router;
-$title = "Calendrier";
+$title = "Calendrier ";
 
 try {
     $mois = new Month($_GET['month'] ?? null,$_GET['year']?? null);
