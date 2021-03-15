@@ -1,11 +1,12 @@
 <?php
 
 use App\App;
+use App\Calendrier\Calendrier;
 use App\Date\Month;
 
 App::startSession();
 global $router;
-
+$title = "Calendrier";
 
 try {
     $mois = new Month($_GET['month'] ?? null,$_GET['year']?? null);
@@ -14,8 +15,11 @@ try {
     $mois = new Month( null,null);
 }
 
+$firstDay = $mois->getFirstDay();
+$firstDay = $firstDay->format('N')==='1'? $firstDay: $mois->getFirstDay()->modify('last monday');
 
-$firstDay = $mois->getFirstDay()->modify('last monday');
+$Calendrier = new Calendrier(App::getPDO());
+$events = $Calendrier->getEventsBetweenByDay($mois->getFirstMonday(),$mois->getLastDay());
 
 // dump($firstDay);
 
@@ -40,7 +44,7 @@ if (isset($_SESSION['flash']) ) {
 }
 ?>
 <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
-    <h1><?=$mois->toString()?></h1>
+    <h2><?=$mois->toString()?></h2>
     <div>
         <a class="btn btn-primary" href="<?=$router->generate('cal')?>?month=<?=$mois->previousMonth()->month?>&amp;year=<?=$mois->previousMonth()->year?>">precedant</a>
         <a class="btn btn-primary" href="<?=$router->generate('cal')?>?month=<?=$mois->nextMonth()->month?>&amp;year=<?=$mois->nextMonth()->year?>">suivant</a>
@@ -53,13 +57,23 @@ if (isset($_SESSION['flash']) ) {
         <?php for($i = 0; $i < $mois->getWeeks(); $i++): ?>
         <tr>
             <?php foreach ($mois->days as $k => $day): 
-                $date =(clone $firstDay)->modify($k + $i * 7 . " days")?>
+                $date =(clone $firstDay)->modify($k + $i * 7 . " days");
+                $eventsforday = $events[$date->format('Y-m-d')] ?? [];
+                  
+            ?>
                 <td class="<?= $mois->withinMonth($date)? '' : 'calendar__othermonth'; ?>">
                     <?php if ($i ===0) { ?>
                     <div class="calendar__weekday" ><?= $day ?></div>
                     <?php } ?>
                     <div class="calendar__day">
                         <?php echo $date->format('d') ?>
+                    </div>
+                    <div class="events">
+                        <ul>
+                        <?php foreach ($eventsforday as $event ):?>
+                            <li><?= $event->name ?></li>
+                        <?php endforeach;?>
+                        </ul>
                     </div>
                 </td>
             <?php endforeach; ?>             

@@ -1,9 +1,10 @@
 console.log('JS chargé');
 
 function modifierbordure(td) {
-    console.log(td)
+    //console.log(td)
     td.style.borderColor = "red"
     
+    td.style.backgroundColor= "blue"
 }
 var td = document.querySelectorAll('td')
 

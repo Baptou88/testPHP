@@ -1,6 +1,7 @@
 .calendar__table {
     width: 100%;
     align-content: center;
+    border: 1px solid rebeccapurple;
     
 }
 .calendar__table td {
@@ -19,6 +20,9 @@
 .calendar__day {
     font-size: 1.2em;
 }
-.calendar__othermonth .calendar__day {
+.calendar__othermonth  .calendar__day  {
+    opacity: 0.3;
+}
+.calendar__othermonth  li  {
     opacity: 0.3;
 }
