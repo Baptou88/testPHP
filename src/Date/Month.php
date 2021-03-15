@@ -5,7 +5,7 @@ namespace App\Date;
 class Month  
 {
     public $days = ['Lundi', 'Mardi', 'Mercredi' , 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-    private $months = ['Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre', 'octobre','Novembre','Decembre'];
+    private $months = ['Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre', 'Octobre','Novembre','Decembre'];
     public $month=1;
     public $year=2020;
 
@@ -46,18 +46,23 @@ class Month
     public function getWeeks(): int
     {
         $start = $this->getFirstDay();
-        $end = (clone $start) ->modify('+1 month -1 day');
         
-        $weeks =  intval($end->format('W')) - intval($start->format('W')) + 1;
-        //dump($end->format('W'), $start->format('W'));
+        $end = (clone $start)->modify('+1 month -1 day');
+        
+        $startWeek = intval($start->format('W'));
+        $endWeek = intval($end->format('W'));
+        if ($endWeek === 1) {
+            $endWeek = intval($end->modify('- 7 days')->format('W')) + 1;
+        }
+        $weeks = $endWeek - $startWeek + 1;
         if ($weeks < 0) {
-            $weeks = intval($end->format('W')) +1;
+            $weeks = intval($end->format('W'));
         }
         return $weeks;
     }    
      
     /**
-     * renvoi le premier lundi
+     * 
      *
      * @return DateTime
      */
@@ -66,6 +71,19 @@ class Month
         return new \DateTime("{$this->year}-{$this->month}-01");
     }
 
+    public function getLastDay(): \DateTime
+    {
+        $days = 6 + 7 * ($this->getWeeks()-1);
+        $start = $this->getFirstMonday();
+        $fin = (clone $start)->modify('+ ' . $days . ' days');
+        return  $fin;
+    }
+    public function getFirstMonday():\DateTime
+    {
+        $start = (clone $this)->getfirstDay();
+        $start ->format('N') === '1' ? $start : $start->modify('last monday');
+        return $start;
+    }
     public function withinMonth(\DateTime $date): bool
     {
         return $this->getFirstDay()->format('Y-m') === $date->format('Y-m');
