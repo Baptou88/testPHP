@@ -46,6 +46,8 @@ if (isset($_SESSION['flash']) ) {
 <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
     <h2><?=$mois->toString()?></h2>
     <div>
+        <a class="btn btn-outline-success" href="<?=$router->generate('cal')?>?month=<?=$mois->previousMonth()->month?>&amp;year=<?=$mois->previousMonth()->year?>">nouveau</a>
+
         <a class="btn btn-primary" href="<?=$router->generate('cal')?>?month=<?=$mois->previousMonth()->month?>&amp;year=<?=$mois->previousMonth()->year?>">precedant</a>
         <a class="btn btn-primary" href="<?=$router->generate('cal')?>?month=<?=$mois->nextMonth()->month?>&amp;year=<?=$mois->nextMonth()->year?>">suivant</a>
     </div>
@@ -56,6 +58,7 @@ if (isset($_SESSION['flash']) ) {
     <table class="calendar__table">
         <?php for($i = 0; $i < $mois->getWeeks(); $i++): ?>
         <tr>
+            
             <?php foreach ($mois->days as $k => $day): 
                 $date =(clone $firstDay)->modify($k + $i * 7 . " days");
                 $eventsforday = $events[$date->format('Y-m-d')] ?? [];
@@ -71,7 +74,7 @@ if (isset($_SESSION['flash']) ) {
                     <div class="events">
                         <ul>
                         <?php foreach ($eventsforday as $event ):?>
-                            <li><?= $event->name ?></li>
+                            <li><a href="/cal/Event/<?= $event->name ?>-<?= $event->id ?>"><?= $event->name ?></a></li>
                         <?php endforeach;?>
                         </ul>
                     </div>

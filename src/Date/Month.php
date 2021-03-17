@@ -48,18 +48,27 @@ class Month
         $start = $this->getFirstDay();
         
         $end = (clone $start)->modify('+1 month -1 day');
-        
+        //dump($end);
+        if ($end->format('N') !== '7' ) {
+            $end->modify('next sunday');
+        }
+        //dump($end);
         $startWeek = intval($start->format('W'));
         $endWeek = intval($end->format('W'));
+        //dump($endWeek,$startWeek);
         if ($endWeek === 1) {
             $endWeek = intval($end->modify('- 7 days')->format('W')) + 1;
         }
         $weeks = $endWeek - $startWeek + 1;
+
+        
         if ($weeks < 0) {
-            $weeks = intval($end->format('W'));
+            $weeks = intval($end->format('W')) +1;
         }
-        return $weeks;
-    }    
+        
+        return $weeks +0;
+    }  
+   
      
     /**
      * 

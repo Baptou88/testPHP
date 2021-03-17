@@ -31,13 +31,14 @@ $tableau->setLimit($nombre);
 $tableau->sortable("id");
 $tableau->columns([
     "name" => "nom",
-    "id" => "idant"
+    "id" => "idant",
+    "client" => "client"
 ]);
 $tableau->format("id", function($value){
     global $router;
     // $router->generate('product' , ["slug" => $value,"id" => $value])
-    return "<a class=\" \" href=\"".$router->generate('product' , ["slug" => $value,"id" => $value])."\">$value</a>";
-   
+     return "<a class=\" \" href=\"".$router->generate('product' , ["slug" => $value["name"],"id" => $value["id"]]) . "\">" . $value['name'] . "</a>";
+   //return "az";
 });
 
 

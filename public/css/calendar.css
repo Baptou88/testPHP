@@ -12,6 +12,11 @@
     height: calc(100vh - 87vh);
     
 }
+.selected{
+    border: 2px solid #222;
+    background-color: aqua;
+    font-size: 1.4em;
+}
 .calendar__weekday {
     font-weight: bold;
     color: #000;

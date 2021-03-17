@@ -68,7 +68,9 @@ class Table {
     private function td($key, array $item):string
     {
         if (isset($this->formatters[$key])) {
-            return "<td>".  $this->formatters[$key]($item[$key]) . "<td>";
+            //dump($item);
+            // return "<td>".  $this->formatters[$key]($item[$key]) . "<td>";
+            return "<td>".  $this->formatters[$key]($item) . "<td>";
         }
         return "<td>$item[$key]</td>";
     }

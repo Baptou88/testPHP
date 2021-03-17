@@ -28,6 +28,7 @@ $router->get("/", "main","acceuil")
     ->get("/googlelogin","googlelogin","googlelogin")
     ->get("/Goauth","Goauth","")
     ->get("/cal","calendrier/calendrier","cal")
+    ->get("/cal/Event/[*:slug]-[i:id]","calendrier/event","calEvent")
     ->run();
     
     

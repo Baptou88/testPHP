@@ -12,7 +12,7 @@ class Calendrier
     }
     public function getEventsBetween(\DateTime $start, \DateTime $end): array
     {
-        dump($start->format('d-m-y'),$end->format('d-m-y'));
+        //dump($start->format('d-m-y'),$end->format('d-m-y'));
         $query = $this->pdo->prepare("SELECT * FROM Events WHERE start BETWEEN :s AND :e");
 //WHERE start BETWEEN :s AND :e
         $query->setFetchMode(\PDO::FETCH_CLASS, Event::class);

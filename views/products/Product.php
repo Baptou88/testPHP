@@ -4,18 +4,17 @@ use App\App;
 use App\Product;
 
 global $router;
-//global $match;
-dump($match);
-$id = $match['params']['id'];
-dump($id);
-dump($params);
 
-$query = App::getPDO()->prepare("SELECT * FROM products WHERE id = :id");
-$query->execute([
-    ":id" => $id
-]);
-$Product = $query->fetchObject(Product::class);
-dump ($Product);
+echo "<div class='container'>";
+dump($params);
+echo "</div>";
+
+$Product = new Product(App::getPDO());
+$Product = $Product->getById($params['id']);
+
+$client = $Product->getClient((int)$Product->id);
+
+
 if ($Product === false) {
     App::startSession();
     $_SESSION['flash'] = ['danger' =>'page introuvable'];
@@ -24,11 +23,19 @@ if ($Product === false) {
 }
 
 
+
 ?>
 <div class="container border rounded py-3 my-3">
     <form action=""method="get">
-        <input type="text" name="id" id="id" value="<?= $Product->id ?>">
-        <input type="text" name="id" id="id" value="<?= $Product->name ?>">
+        <div class="container">
+            <input type="text" name="id" id="id" value="<?= $Product->id ?>">
+            <input type="text" name="id" id="id" value="<?= $Product->name ?>">
+            <input type="text" name="id" id="id" value="<?= $client->nom ?>">
+        </div>
+        <div class="container mt-4">
+            <button class="btn btn-primary" type="submit">Soumettre</button>
+        </div>
+        
     </form>
 </div>
 <div class="container">
