@@ -12,6 +12,16 @@
     height: calc(100vh - 87vh);
     
 }
+.calendar__table td:hover {
+    
+    border: 1px solid rgb(107, 20, 20);
+    background-color: rgba(137, 43, 226, 0.384);
+    
+}
+.calendar__table li:hover {
+    background-color: rgba(220, 20, 60, 0.185);
+    border-radius: 5px;
+}
 .selected{
     border: 2px solid #222;
     background-color: aqua;

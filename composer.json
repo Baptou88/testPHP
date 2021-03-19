@@ -10,7 +10,8 @@
         
         "symfony/var-dumper": "^5.2",
         "filp/whoops": "^2.9",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "vlucas/valitron": "^1.4"
     },
     "autoload": {
         "psr-4": {

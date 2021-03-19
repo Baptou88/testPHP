@@ -43,18 +43,20 @@ class Table {
         $retour .= "</table>";
         $retour .= "<p>nb records: $count</p>";
         $pages = ceil($count / $this->limit);
+
         if ($pages > 1 && $page > 1)
         {
             // $retour .= "<a href=?p=". ($page-1) . ">page-1</a>";
-            $retour .= "<a href=?" . URLHelper::withParam($this->get,"p",$page-1) . ">page-1</a>";
+            $retour .= "<a class =\"btn btn-primary\" href=?" . URLHelper::withParam($this->get,"p",$page-1) . ">page-1</a>";
         }
         if ($pages > 1 && $page < $pages)
         {
             // $retour .= "<a href=?p=". ($page+1) . ">page+1</a>";
-            $retour .= "<a href=?" . URLHelper::withParam($this->get,"p",$page+1). ">page+1</a>";
+            $retour .= "<a class =\"btn btn-primary\" href=?" . URLHelper::withParam($this->get,"p",$page+1). ">page+1</a>";
         }
         return $retour;
     }
+    
     private function tHead(): string
     {
         $retour = "<thead><tr>";

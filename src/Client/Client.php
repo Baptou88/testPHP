@@ -23,6 +23,6 @@ class Client
         $query->execute([
             ':id' => $id
             ]);
-        return $query->fetchObject(__CLASS__);
+        return $query->fetchObject(__CLASS__) ?? null;
     }
 }

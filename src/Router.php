@@ -28,6 +28,12 @@ class Router
         return $this;
     }
 
+    public function post(string $url,string $view, ?string $name = null):self
+    {
+        $this->aRouter->map('POST' , $url , $view , $name );
+        return $this;
+    }
+
     public function run()
     {
         $match = $this->aRouter->match();
